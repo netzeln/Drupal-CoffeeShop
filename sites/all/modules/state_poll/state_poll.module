@@ -1,0 +1,67 @@
+<?php
+function state_poll_menu(){
+    $items = array();
+    $items['state_poll'] = array(
+        'title' => 'State Poll',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('state_poll_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['state_poll_success_page'] = array(
+        'title' => 'Results',
+        'page callback' => 'state_poll_success',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function state_poll_form() {
+    $form['ice_cream'] = array(
+      '#title' => 'Ice Cream',
+      '#type' => 'textfield',
+      '#description' => t('Enter your favorite ice cream flavor!'),
+      '#required' => TRUE,
+    );
+    $form['state'] = array(
+      '#title' => 'State',
+      '#type' => 'textfield',
+      '#description' => t('Enter your state.'),
+      '#required' => TRUE,
+      '#element_validate' => array('element_validate_state_format'),
+    );
+    $form['submit'] = array(
+      '#type' => 'submit',
+      '#value' => 'OK',
+    );
+    return $form;
+}
+
+function element_validate_state_format($element) {
+    $state = $element['#value'];
+    $title_case = ucwords($state);
+    $lower_case = strtolower($state);
+    $upper_case = strtoupper($state);
+    if((strlen($state) == 1)) {
+        form_set_error('state', t('No state with 1 letter!'));
+    } elseif(((strlen($state)) == 2) && ($state != $upper_case) && ($state != $lower_case)) {
+        form_set_error('state', t('Incorrect case format! Need to be both upper or lower case!'));
+    } elseif(((strlen($state) > 2)) && ($state != $title_case) && ($state != $lower_case)) {
+        form_set_error('state', t('Incorrect state format! Needs to be title case or lower case!'));
+    }
+}
+
+function state_poll_form_submit($form, &$form_state) {
+    $ice_cream = $form_state['values']['ice_cream'];
+    $state = $form_state['values']['state'];
+    $output = 'Thank you! We have you down for ' . $ice_cream . ' in the state of ' . $state . '!';
+
+    $_SESSION['state_poll_output'] = $output;
+    $form_state['redirect'] = 'state_poll_success_page';
+}
+
+function state_poll_success() {
+    $output = $_SESSION['state_poll_output'];
+    return $output;
+}

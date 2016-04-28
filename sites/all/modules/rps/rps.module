@@ -1,0 +1,93 @@
+<?php
+function rps_menu(){
+  $items = array();
+  $items['rps'] = array(
+    'title' => 'Player 1 Form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rps_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+  $items['rps2'] = array(
+    'title' => 'Player 2 Form',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('rps_2_form'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['rps_success_page'] = array(
+    'title' => 'Winner',
+    'page callback' => 'rps_success',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function rps_form(){
+  $form['player1'] = array(
+    '#title' => 'Player 1',
+    '#type' => 'select',
+    '#options' => array(
+      0 => t('rock'),
+      1 => t('paper'),
+      2 => t('scissors'),
+    ),
+    '#description' => 'Select one!',
+    '#required' => TRUE,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'GO!',
+  );
+  return $form;
+}
+
+function rps_form_submit($form, &$form_state) {
+    $player1 = $form_state['values']['player1'];
+    $_SESSION['player1_option'] = $player1;
+    $form_state['redirect'] = 'rps2';
+}
+
+function rps_2_form(){
+  $form['player2'] = array(
+    '#title' => 'Player 2',
+    '#type' => 'select',
+    '#options' => array(
+      0 => t('rock'),
+      1 => t('paper'),
+      2 => t('scissors'),
+    ),
+    '#description' => 'Select one!',
+    '#required' => TRUE,
+  );
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'GO!',
+  );
+  var_dump($_SESSION['player1_option']);
+  return $form;
+}
+
+function rps_2_form_submit($form, &$form_state) {
+    $player2 = $form_state['values']['player2'];
+    $player1 = $_SESSION['player1_option'];
+    // $_SESSION['player2_option'] = $player2;
+    $winner = '';
+
+    if(($player1 == 0 && $player2 == 2) || ($player1 == 1 && $player2 == 0) || ($player1 == 2 && $player2 == 1)){
+      $winner = 'Player 1 wins!!';
+    } elseif($player1 == $player2) {
+      $winner = 'TIE!';
+    } else {
+      $winner = 'Player 2 wins!!';
+    }
+
+    $_SESSION['winner'] = $winner;
+    $form_state['redirect'] = 'rps_success_page';
+}
+
+function rps_success(){
+  $winner = $_SESSION['winner'];
+  return $winner;
+}

@@ -1,0 +1,5 @@
+name = State Poll
+description = 'A polling module for ice cream flavors in states'
+package = Other
+core = 7.x
+files[] = state_poll.module

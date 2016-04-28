@@ -1,0 +1,5 @@
+name = Rock Paper Scissors
+description = Rock Paper Scissors game.
+package = Other
+core = 7.x
+files[] = rps.module
