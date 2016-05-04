@@ -1,0 +1,37 @@
+/*#page-wrapper {
+  background-color: blue;
+}*/
+#content {
+  float:left;
+}
+#sidebar-first{
+  float:right;
+  background-color: #cccccc;
+}
+
+.node-coffee-import {
+  background-color: tan;
+}
+
+.coffee-test{
+  background-color: tan;
+  font-family: sans-serif;
+  color: white;
+}
+
+#main {
+  background-color: orange;
+}
+
+.section.clearfix {
+  background-color: red;
+}
+
+#navigation .section {
+  text-align: center;
+}
+
+.custom-class {
+  text-align: center;
+  background-color: #7bbbc6;
+}

@@ -1,0 +1,20 @@
+name = Cameron's Awesome Theme
+core = 7.x
+engine = phptemplate
+stylesheets[all][] = css/styles.css
+scripts[] = js/scripts.js
+regions[deals] = Deals
+regions[page_top] = Page top
+regions[page_bottom] = Page bottom
+regions[content] = Content
+regions[help] = Help
+regions[sidebar_first] = Sidebar-first
+regions[sidebar_second] = Sidebar-second
+regions[highlighted] = Highlighted
+
+Drupal-CoffeeShop/modules/system/html.tpl.php
+Drupal-CoffeeShop/modules/system/page.tpl.php
+Drupal-CoffeeShop/modules/system/region.tpl.php
+Drupal-CoffeeShop/modules/node/node.tpl.php
+Drupal-CoffeeShop/modules/block/block.tpl.php
+Drupal-CoffeeShop/modules/field/theme/field.tpl.php
