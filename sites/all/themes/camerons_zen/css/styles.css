@@ -22,9 +22,24 @@
 /* @import "theme-B.css"; */
 
 body {
-  background-color: #F5F5F5;
+  background-color: #B29B55;
   color: #333;
   font-size: 14px;
   line-height: 1.5;
   font-family: Helvetica, Verdana, Arial, sans-serif;
+}
+
+.header{
+  background-color: #3B331C;
+}
+.header a , span{
+  color: white;
+}
+
+#block-user-login{
+  border-radius: 3px;
+  border: solid 1px;
+  border-color: white;
+  background-color: #FFDD79;
+  padding: 5px;
 }
