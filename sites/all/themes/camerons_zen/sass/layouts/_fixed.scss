@@ -123,4 +123,10 @@ $zen-auto-include-item-base: false;
   .region-sidebar-second {
     @include zen-grid-item(1, 5);
   }
+  /* Span 1 column, starting in 5th column from left. */
+  .region-sidebar-second-lower {
+    @include zen-clear();
+    @include zen-grid-item(1, 5);
+    // @include zen-nested-container();
+  }
 }
