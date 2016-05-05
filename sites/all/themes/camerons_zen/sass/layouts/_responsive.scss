@@ -44,6 +44,7 @@ $zen-auto-include-item-base: false;
 #navigation,
 .region-sidebar-first,
 .region-sidebar-second,
+.region-sidebar-second-lower,
 #footer {
   // See the note about $zen-auto-include-item-base above.
   @include zen-grid-item-base();
@@ -165,12 +166,12 @@ $zen-auto-include-item-base: false;
   .sidebar-first {
     /* Span 4 columns, starting in 2nd column from left. */
     #content {
-      @include zen-grid-item(4, 2);
+      @include zen-grid-item(3, 3);
     }
 
     /* Span 1 column, starting in 1st column from left. */
     .region-sidebar-first {
-      @include zen-grid-item(1, 1);
+      @include zen-grid-item(2, 1);
     }
   }
 
@@ -180,12 +181,12 @@ $zen-auto-include-item-base: false;
   .sidebar-second {
     /* Span 4 columns, starting in 1st column from left. */
     #content {
-      @include zen-grid-item(4, 1);
+      @include zen-grid-item(3, 1);
     }
 
     /* Span 1 column, starting in 5th column from left. */
     .region-sidebar-second {
-      @include zen-grid-item(1, 5);
+      @include zen-grid-item(2, 4);
     }
   }
 
@@ -208,4 +209,33 @@ $zen-auto-include-item-base: false;
       @include zen-grid-item(1, 5);
     }
   }
+  /**
+   * The layout when there are THREE sidebars.
+   */
+  .two-sidebars {
+    /* Span 3 columns, starting in 2nd column from left. */
+    #content {
+      @include zen-grid-item(2, 2);
+    }
+
+    /* Span 1 column, starting in 1st column from left. */
+    .region-sidebar-first {
+      @include zen-grid-item(1, 1);
+    }
+
+    /* Span 1 column, starting in 5th column from left. */
+    .region-sidebar-second {
+      @include zen-grid-item(1, 4);
+    }
+    /* Span 1 column, starting in 5th column from left. */
+    .region-sidebar-second-lower {
+      @include zen-clear();
+      @include zen-grid-item(1, 5);
+    }
+  }
+
+  // .region-footer {
+  //   @include zen-new-row();
+  //   @include zen-grid-item(3, 2);
+  // }
 }
